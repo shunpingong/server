@@ -1,8 +1,11 @@
 const express = require("express");
-const https = require("https");
+const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 const PORT = 8000;
+
+app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -17,29 +20,13 @@ app.get("/carpark-availability", async (req, res) => {
   try {
     const BASE_URL =
       "https://api.data.gov.sg/v1/transport/carpark-availability";
-
-    // Make a GET request to the carpark availability API
-    https.get(BASE_URL, (responseFromAPI) => {
-      let data = "";
-
-      // A chunk of data has been received.
-      responseFromAPI.on("data", (chunk) => {
-        data += chunk;
-      });
-
-      // The whole response has been received.
-      responseFromAPI.on("end", () => {
-        // Parse the received data as JSON
-        const carparkAvailabilityData = JSON.parse(data);
-
-        // Send the carpark availability data as the response
-        res.json(carparkAvailabilityData);
-      });
-    });
+    const response = await axios.get(BASE_URL);
+    console.log(response);
+    const data = response.data.items[0].carpark_data;
+    res.status(200).json(data);
   } catch (error) {
-    // If there's an error, send an error response
     console.error("Error fetching carpark availability:", error);
-    res.status(500).json({ error: "Error fetching carpark availability data" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
@@ -47,19 +34,12 @@ app.get("/carpark-address", async (req, res) => {
   try {
     const BASE_URL =
       "https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&limit=3000&q=";
-    https.get(BASE_URL, (responseFromAPI) => {
-      let data = "";
-      responseFromAPI.on("data", (chunk) => {
-        data += chunk;
-      });
-      responseFromAPI.on("end", () => {
-        const carparkAddressData = JSON.parse(data);
-        res.json(carparkAddressData);
-      });
-    });
+    const response = await axios.get(BASE_URL);
+    const data = response.data.result.records;
+    res.status(200).json(data);
   } catch (error) {
     console.error("Error fetching carpark address:", error);
-    res.status(500).json({ error: "Error fetching carpark address data" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
