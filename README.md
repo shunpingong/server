@@ -1,6 +1,9 @@
 # Carpark API Server Bypass
 
-This Node.js app provides endpoints to access real-time carpark availability and addresses in Singapore. It uses Express.js for handling HTTP requests, Axios for API requests, and CORS for cross-origin resource sharing.
+This Node.js app provides endpoints to access real-time carpark availability and addresses in Singapore.
+Uses Express.js for handling HTTP requests
+Axios for API requests
+CORS for cross-origin resource sharing.
 
 ## Installation
 
@@ -36,11 +39,5 @@ This Node.js app provides endpoints to access real-time carpark availability and
     - Access locally at `localhost:8000/carpark-address` or online at [https://server-mj0wwb1bt-shun-pings-projects.vercel.app/carpark-address](https://server-mj0wwb1bt-shun-pings-projects.vercel.app/carpark-address).
 
 
-## Dependencies
 
-- **Express**: Web framework for Node.js.
-- **Axios**: HTTP client for Node.js.
-- **CORS**: Middleware for enabling cross-origin resource sharing.
-
-https://server-mj0wwb1bt-shun-pings-projects.vercel.app/
 
