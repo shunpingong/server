@@ -1,9 +1,9 @@
 # Carpark API Server Bypass
 
-This Node.js app provides endpoints to access real-time carpark availability and addresses in Singapore.
-Uses Express.js for handling HTTP requests
-Axios for API requests
-CORS for cross-origin resource sharing.
+This Node.js app provides endpoints to access real-time carpark availability and addresses in Singapore. <br>
+Uses Express.js for handling HTTP requests <br>
+Axios for API requests <br>
+CORS for cross-origin resource sharing. <br>
 
 ## Installation
 
